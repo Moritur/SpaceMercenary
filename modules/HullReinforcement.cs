@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class HullReinforcement : Module {
 
+    const int hpAdded = 50;
+
     public override void InitServer()
     {
         ShipStats shipStats = GetComponentInParent<ShipStats>();
 
-        shipStats.maxHp += 50;
-        shipStats.hp += 50;
+        shipStats.maxHp += hpAdded;
+        shipStats.hp += hpAdded;
     }
 
     public override void InitPlayer() { }
