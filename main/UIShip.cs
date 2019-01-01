@@ -6,10 +6,12 @@ using System.IO;
 [System.Serializable]
 public class UIShip : MonoBehaviour {
 
+    [Tooltip("Unique name of this ship model (list can be edited in UIStaticData script)")]
     public UIStaticData.shipNames shipName;
-    public UIStaticData.moduleList[] moduleList;
-    string path;
-    int currentModule=0;
+    [HideInInspector]
+    public UIStaticData.moduleList[] moduleList;    //list of modules player selected
+    string path;                //path to save file
+    int currentModule=0;        //module slot player is currently editing
 
     private void Awake()
     {

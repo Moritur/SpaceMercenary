@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 //class is sealed because shpip's control system is designed only for this type of engines
 public sealed class Engine : MonoBehaviour{
 
+    [Tooltip("force engine applies to the ship")]
 	public float strenght;
 	float pwr;
 	ParticleSystem ps;

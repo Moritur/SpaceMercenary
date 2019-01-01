@@ -7,16 +7,14 @@ using UnityEngine.Networking;
 public sealed class ShipStats : NetworkBehaviour {
 
     [SyncVar]
-	public float maxHp;
-    [SyncVar]
+    public float maxHp;
+    [SyncVar][HideInInspector]
     public float hp;
     [SyncVar]
 	public float maxArmor;
-    [SyncVar]
+    [SyncVar][HideInInspector]
     public float armor;
-	[SerializeField]
 	Text txthp;             //UI text used to display current hp in hex
-	[SerializeField]
 	RectTransform barHp;    //bar used to display current hp
 
     void Awake()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Module : MonoBehaviour{
 
+    [HideInInspector]
     public bool working { get; protected set; } = true;     //set to false to disable module
 
     public abstract void InitServer();  //called on server when ship is spawned

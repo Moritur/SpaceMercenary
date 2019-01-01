@@ -4,10 +4,14 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour{
 
+    [Tooltip("Damage dealt by weapon in single shot")]
     public float damage;
-    public float shootingSpeed;         //time between shoots in seconds
+    [Tooltip("time between shoots in seconds")]
+    public float shootingSpeed;
+    [Tooltip("Reload time in seconds")]
     public float reloadTime;
-    public bool reloadable;             //can this weapon be reloaded?
+    [Tooltip("Can this weapon be reoloaded at all?")]
+    public bool reloadable;
     protected bool canShoot=true;       //can weapon already be fired after last shoot?
     protected bool isReloading=false;
 

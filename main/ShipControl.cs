@@ -10,12 +10,16 @@ public abstract class ShipControl : NetworkBehaviour {
 	abstract public void OnUpdate();        //use this in derived class instead of Update
 	abstract public void OnFixedUpdate();   //called only for local player
 
+    [Tooltip("Unique name of this ship model (list can be edited in UIStaticData script)")]
     public UIStaticData.shipNames shipName; //used to identify ships model
-	public GameObject[] engines;            //ship's engines
-    public Weapon[] weapons;                //ship's weapons
+    [Tooltip("List if ship's engines")]
+    public GameObject[] engines;
+    [Tooltip("List of ship's weapons")]
+    public Weapon[] weapons;
+    [Tooltip("List of ship's modules")]
     public GameObject[] moduleObjects;      //gameObjects representing modules
 
-    Module[] modules;                       //ship's modules
+    Module[] modules;                       //Ship's modules. This array's values are set in StartModules method
     bool modulesReady = false;              //true after modules have been spawned and initialized
 
     protected float[] enginesPowers;        //current power (0-1) of each engine; engines update their power settings from this array in FixedUpdate
