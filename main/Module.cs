@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * When creating new module make sure to add it to moduleList
+ * enum in UIStaticData class and incleude it in ModuleListToComponent
+ * method in ModuleLoader class.
+ */
+
 public abstract class Module : MonoBehaviour{
 
     [HideInInspector]
