@@ -73,18 +73,19 @@ public class ModuleLoader : NetworkBehaviour {
     void CmdLoadModules(UIStaticData.moduleList[] modulesToLoad)
     {
         choosenModules = modulesToLoad;
-        LoadModules();
-        RpcLoadModules(choosenModules);
+        LoadModules();      //load this ship's modules on server
+        RpcLoadModules(choosenModules);     //load this ship's modules for all players who wre currently in game
+        GetComponentInParent<ShipStats>().SetStatsToMax();     //make sure modules altering max hp and armor take effect
         GameObject[] ships = GameObject.FindGameObjectsWithTag("Player");
 
-        //this loop loads modules for all ships that are already connected when player joins
-        foreach (GameObject g in ships)
-        {
-            if (g != gameObject)
+        //this loop loads modules of all ships that are already connected when player who called this command joins in his game instance
+            foreach (GameObject g in ships)
             {
-                g.GetComponent<ModuleLoader>().CallTargetLoadModules(connectionToClient);
+                if (g != gameObject)
+                {
+                    g.GetComponent<ModuleLoader>()?.CallTargetLoadModules(connectionToClient);
+                }
             }
-        }
     }
 
     void LoadModules()
@@ -119,7 +120,17 @@ public class ModuleLoader : NetworkBehaviour {
             case UIStaticData.moduleList.AutoRepair:
                 return typeof(AutoRepair);
 
+            case UIStaticData.moduleList.ImprovedArmor:
+                return typeof(ImprovedArmor);
+
+            case UIStaticData.moduleList.NavigationSystems:
+                return typeof(NavigationSystems);
+
+            case UIStaticData.moduleList.TemporaryArmor:
+                return typeof(TemporaryArmor);
+
             default:
+                Debug.LogWarning("No Module class assigned for this module, check ModuleListToComponent method in ModuleLoader class");
                 return typeof(EmptyModule);
         }
     }
